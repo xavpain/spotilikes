@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+    %}
+    <div class="d-flex flex-wrap justify-content-center p-2" id="users">
+      {% if songs|length == 0 %}
+      <div class="card m-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">No likes in common</h5>
+          <p class="card-text">It seems you two have zero likes in common...</p>
+        </div>
+      </div>
+      {% else %}
+      {% for song in songs %}
+      <!-- <div class="column m-2"> -->
+        <iframe class="m-2" style="border-radius:12px" src="https://open.spotify.com/embed/track/{{song}}?utm_source=generator" width="300" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <!-- </div> -->
+        {% endfor %}  
+        {% endif %}
+  {% endblock %}

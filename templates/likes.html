@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+  %}
+  <div class="card-columns mx-auto p-4" id="users">
+    {% if not is_empty %}
+    <div class="card m-2" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">No likes</h5>
+        <p class="card-text">It seems you did not update your likes. <a href="/likes">Click here to do so</a></p>
+      </div>
+    </div>
+    {% else %}
+    {% for user in users %}
+    <div class="card m-2" style="width: 18rem;">
+      <img class="card-img-top" src="{{user.userpic}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.username }}</h5>
+        <p class="card-text">{{user.likes|length}} likes</p>
+        <form action="/mutual" method="post">
+          <button name="mutual" value={{user.userid}} type="submit" class="btn btn-primary">Show mutual likes</a>
+          </form>
+        </div>
+      </div>
+      {% endfor %}  
+      {% endif %}
+{% endblock %}
