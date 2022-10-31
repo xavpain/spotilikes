@@ -27,7 +27,7 @@ default_pic = "https://i.scdn.co/image/ab6761610000e5eb1020c22e0ce742eca7166e65"
 
 def check_session():
     cache_handler = spotipy.cache_handler.FlaskSessionCacheHandler(session)
-    auth_manager = spotipy.oauth2.SpotifyOAuth(scope=scope, cache_handler=cache_handler, redirect_uri="http://localhost:3000")
+    auth_manager = spotipy.oauth2.SpotifyOAuth(scope=scope, cache_handler=cache_handler, redirect_uri="http://spotilikes.herokuapp.com")
     if not auth_manager.validate_token(cache_handler.get_cached_token()):
         return None
     return spotipy.Spotify(auth_manager=auth_manager)
@@ -42,7 +42,7 @@ def trim_user(user):
 @app.route('/')
 def index():
     cache_handler = spotipy.cache_handler.FlaskSessionCacheHandler(session)
-    auth_manager=SpotifyOAuth(scope=scope, redirect_uri="http://localhost:3000", cache_handler=cache_handler, show_dialog=True)
+    auth_manager=SpotifyOAuth(scope=scope, redirect_uri="http://spotilikes.herokuapp.com", cache_handler=cache_handler, show_dialog=True)
     
     if request.args.get("code"):
         auth_manager.get_access_token(request.args.get("code"))
