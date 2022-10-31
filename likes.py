@@ -134,5 +134,5 @@ def get_mutual():
         return redirect('/home')
     commonids = list(set(i["trackid"] for i in me["likes"]).intersection(set(i["trackid"] for i in target["likes"])))
     # tracks = list((trim_track(sp.track(i)) for i in commonids))
-    return render_template('mutual.html', is_auth=True, client=sp.me(), songs=commonids)
+    return render_template('mutual.html', is_auth=True, client=trim_user(sp.me()), songs=commonids)
 
